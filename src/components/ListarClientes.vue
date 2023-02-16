@@ -47,29 +47,39 @@
     </div>
   </template>
   <script>
+
+  import "jquery/dist/jquery.min.js";
+  import "datatables.net-dt/js/dataTables.dataTables";
+  import "datatables.net-dt/css/jquery.dataTables.min.css";
+  import $ from "jquery";
+
   export default {
+    mounted(){
+      this.consultarClientes();
+    },
     data() {
       return {
         clientes: [],
       };
     },
-    created: function () {
-      this.consultarClientes();
-    },
     methods: {
+      tabla(){
+        this.$nextTick(() => {
+          $("#tablaclientes").DataTable();
+        });      
+      },
       consultarClientes() {
   
         fetch("http://localhost/agencia-seguros/clientes/")
           .then((respuesta) => respuesta.json())
           .then((datosRespuesta) => {
             console.log(datosRespuesta);
-            
-            this.clientes = [];
   
             if (typeof datosRespuesta[0].success === "undefined") {
               this.clientes = datosRespuesta;
+              this.tabla();
+              console.log("tabla creada");
             }
-  
           })
           .catch(console.log);
   
