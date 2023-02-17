@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <div class="card">
+    <div class="card shadow">
       <div class="card-header">Editar poliza</div>
       <div class="card-body">
-        <form v-on:submit.prevent="actualizarRegistro" method="post">
+        <form v-on:submit.prevent="actualizarPoliza" method="post">
           <div class="mb-3" style="text-align: start">
             <label for="importe" class="form-label">Importe:</label>
             <input
@@ -30,9 +30,26 @@
               >Indica el estado de la póliza</small
             >
           </div>
+          <div class="mb-3" style="text-align: start">
+            <label for="observaciones" class="form-label">Observaciones:</label>
+            <textarea
+              required
+              name="observaciones"
+              id="observaciones"
+              v-model="poliza.observaciones"
+              class="form-control"
+              placeholder="Escribe los detalles de la póliza"
+              aria-describedby="helpId"
+              cols="10"
+              rows="4"
+            ></textarea>
+            <small id="helpId" class="text-muted"
+              >Introduce las observaciones de la póliza</small
+            >
+          </div>
           <div class="btn-group" role="group" aria-label="Button group name">
-            <button type="submit" class="btn btn-primary">Modificar</button>
-            <router-link :to="{ name: 'listar' }" class="btn btn-warning"
+            <button type="submit" class="btn btn-primary mx-2 rounded shadow-sm">Modificar</button>
+            <router-link :to="{ name: 'listarpolizas' }" class="btn btn-warning mx-2 rounded shadow-sm"
               >Cancelar</router-link
             >
           </div>
@@ -49,11 +66,11 @@ export default {
     };
   },
   created: function () {
-    this.obtenerInformacionId();
+    this.datosPoliza();
   },
   methods: {
-    obtenerInformacionId() {
-      fetch("http://localhost/agencia-seguros/polizas/?consultar=" + this.$route.params.id)
+    datosPoliza() {
+      fetch("http://localhost/agencia-seguros/polizas/?consultardatospoliza=" + this.$route.params.id)
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
@@ -61,10 +78,11 @@ export default {
         })
         .catch(console.log);
     },
-    actualizarRegistro() {
+    actualizarPoliza() {
       var datosEnviar = {
-        nombre: this.poliza.nombre,
-        correo: this.poliza.correo,
+        importe: this.poliza.importe,
+        estado: this.poliza.estado,
+        observaciones: this.poliza.observaciones,
       };
 
       fetch("http://localhost/agencia-seguros/polizas/?actualizar=" + this.$route.params.id, {
@@ -74,7 +92,7 @@ export default {
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
-          window.location.href = "../listarpolizas";
+          this.$router.push({ name: 'listarpolizas' });
         });
     },
   },

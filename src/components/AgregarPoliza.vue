@@ -30,7 +30,7 @@
               <option value="Pre-anulada">Pre-anulada</option>
             </select>
             <small id="helpId" class="text-muted"
-              >Introduce los datos de la póliza</small
+              >Indica el estado de la póliza</small
             >
           </div>
           <div class="mb-3" style="text-align: start">
@@ -41,7 +41,7 @@
               id="observaciones"
               v-model="poliza.observaciones"
               class="form-control"
-              placeholder="Indica el estado de la póliza"
+              placeholder="Escribe los detalles de la póliza"
               aria-describedby="helpId"
               cols="10"
               rows="4"
@@ -51,9 +51,9 @@
             >
           </div>
           <div class="mb-3" style="text-align: start">
-            <label for="clientes" class="form-label">Beneficiario de la póliza:</label>
+            <label for="clientes" class="form-label">Tomador de la póliza:</label>
             <select v-model="poliza.cliente_id" class="form-select form-select-lg" name="cliente" id="cliente">
-              <option v-for="cliente in clientes" :key="cliente.id" :value="cliente.id">{{ cliente.nombre }}</option>
+              <option v-for="cliente in clientes" :key="cliente.id" :value="cliente.id">Nombre: {{ cliente.nombre }} {{ cliente.apellidos }} - Correo: {{ cliente.correo }}</option>
             </select>
             <small id="helpId" class="text-muted"
               >Asocia la póliza a un cliente</small
@@ -75,7 +75,7 @@ export default {
   data() {
     return {
       poliza: {},
-      cliente: {},
+      clientes: {},
     };
   },
   created: function () {
@@ -108,8 +108,6 @@ export default {
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
-          
-          this.clientes = [];
 
           if (typeof datosRespuesta[0].success === "undefined") {
             this.clientes = datosRespuesta;

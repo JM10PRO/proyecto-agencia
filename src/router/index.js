@@ -8,6 +8,7 @@ import HomeView from '../views/HomeView.vue'
 import ListarClientes from '../components/ListarClientes.vue'
 import AgregarCliente from '../components/AgregarCliente.vue'
 import EditarCliente from '../components/EditarCliente.vue'
+import VisualizarDatos from '../components/VisualizarDatos.vue'
 
 import ListarPolizas from '../components/ListarPolizas.vue'
 import AgregarPoliza from '../components/AgregarPoliza.vue'
@@ -42,32 +43,44 @@ const routes = [
   {
     path: '/listar-clientes',
     name: 'listarclientes',
-    component: ListarClientes
+    component: ListarClientes,
+    meta: { requireAuth: true }
   },
   {
     path: '/agregar-cliente',
     name: 'agregarcliente',
-    component: AgregarCliente
+    component: AgregarCliente,
+    meta: { requireAuth: true }
   },
   {
     path: '/editar-cliente',
     name: 'editarcliente',
-    component: EditarCliente
+    component: EditarCliente,
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/visualizar-datos',
+    name: 'visualizardatos',
+    component: VisualizarDatos,
+    meta: { requireAuth: true }
   },
   {
     path: '/listar-polizas',
     name: 'listarpolizas',
-    component: ListarPolizas
+    component: ListarPolizas,
+    meta: { requireAuth: true }
   },
   {
     path: '/agregar-poliza',
     name: 'agregarpoliza',
-    component: AgregarPoliza
+    component: AgregarPoliza,
+    meta: { requireAuth: true }
   },
   {
     path: '/editar-poliza',
     name: 'editarpoliza',
-    component: EditarPoliza
+    component: EditarPoliza,
+    meta: { requireAuth: true }
   },
 ]
 
@@ -76,5 +89,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+// router.beforeEach((to, from, next) => {
+//   if(to.matched.some(route => route.meta.requireAuth)){
+//     if()
+//   }
+// })
 
 export default router

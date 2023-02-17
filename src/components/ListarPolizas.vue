@@ -20,21 +20,21 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="poliza in polizas" :key="poliza.id" :class="[
+                <tr v-for="(poliza, index) in polizas" :key="poliza.numero" :class="[
                     'alert', 
                     poliza.estado == 'Cobrada' ? 'alert-success' : '', 
                     poliza.estado == 'A cuenta' ? 'alert-info' : '', 
                     poliza.estado == 'Liquidada' ? 'alert-warning' : '',
                     poliza.estado == 'Anulada' ? 'alert-dark' : '',
                     poliza.estado == 'Pre-anulada' ? 'alert-secondary' : '']">
-                  <td>{{ poliza.numero }}</td>
+                  <td @click="verDatosCliente(poliza.cliente_id)">{{ poliza.numero }}</td>
                   <td>{{ poliza.importe }}</td>
                   <td>{{ poliza.fecha }}</td>
                   <td>{{ poliza.estado }}</td>
                   <td>{{ poliza.observaciones }}</td>
                   <td>
-                      <router-link :to="{name:'editarpoliza',params:{id:poliza.id}}" class="btn btn-primary">Editar</router-link> &nbsp;
-                      <button type="button" v-on:click="borrarpoliza(poliza.id)" class="btn btn-danger">Borrar</button>
+                      <router-link :to="{name:'editarpoliza',params:{id:poliza.numero}}" class="btn btn-primary">Editar</router-link> &nbsp;
+                      <button type="button" v-on:click="borrarPoliza(index, poliza.numero)" class="btn btn-danger">Borrar</button>
                   </td>
                 </tr>
               </tbody>
@@ -46,6 +46,9 @@
     </div>
   </template>
   <script>
+
+  import Swal from 'sweetalert2';
+
   export default {
     data() {
       return {
@@ -53,10 +56,10 @@
       };
     },
     created: function () {
-      this.consultarpolizas();
+      this.consultarPolizas();
     },
     methods: {
-      consultarpolizas() {
+      consultarPolizas() {
   
         fetch("http://localhost/agencia-seguros/polizas/")
           .then((respuesta) => respuesta.json())
@@ -73,20 +76,48 @@
           .catch(console.log);
   
       },
-      borrarpoliza(id){
+      borrarPoliza(index, id){
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: 'btn btn-success mx-2',
+            cancelButton: 'btn btn-danger mx-2'
+          },
+          buttonsStyling: false
+        })
   
-          console.log(id);
-  
-          fetch("http://localhost/agencia-seguros/polizas/?borrar="+id)
-          .then((respuesta) => respuesta.json())
-          .then((datosRespuesta) => {
-            console.log(datosRespuesta);
-            
-            window.location.href = '/listarpolizas';
-  
-          })
-          .catch(console.log);
-  
+        swalWithBootstrapButtons.fire({
+          title: '¿Estás seguro de borrar esta póliza?',
+          text: "Esta acción no se puede deshacer.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'No, cancelar',
+          reverseButtons: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch("http://localhost/agencia-seguros/polizas/?borrar="+id)
+              .then((respuesta) => respuesta.json())
+              .then((datosRespuesta) => {
+                console.log(datosRespuesta);
+                this.polizas.splice(index, 1);      
+              })
+              .catch(console.log);
+            swalWithBootstrapButtons.fire(
+              '¡Eliminado!',
+              'La póliza se ha borrado.',
+              'success'
+            )
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+            swalWithBootstrapButtons.fire(
+              'Cancelado',
+              'Se ha conservado la póliza.',
+              'error'
+            )
+          }
+        })  
+      },
+      verDatosCliente(cliente_id){
+        this.$router.push({ name: 'visualizardatos', params:{id:cliente_id} });
       }
     },
   };

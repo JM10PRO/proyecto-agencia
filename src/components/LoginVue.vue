@@ -1,11 +1,11 @@
 <template>
-  <div class="login">
+  <div class="container-fluid">
     <div class="row d-flex justify-content-center">
       <div class="card bg-success bg-gradient text-start" style="width: 33%">
         <h2 class="card-title text-center text-white m-3">Login</h2>
         <div class="card-body text-center">
           <form action class="form" @submit.prevent="login">
-            <label class="form-label bg-dark-subtle p-1 rounded-start border border-secondary" for="email"><img src="../assets/user.svg" alt="Correo" style="width: 36px;"></label>
+            <label class="form-label bg-dark-subtle p-1 rounded-start border border-secondary" for="email"><img src="../assets/icons/user.svg" alt="Correo" style="width: 36px;"></label>
             <input
               v-model="email"
               class="form-input p-2 rounded-end"
@@ -15,7 +15,7 @@
               placeholder="Email"
             />
             <br><br>
-            <label class="form-label bg-dark-subtle p-1 rounded-start border border-secondary" for="password"><img src="../assets/password.svg" alt="Clave" style="width: 36px;"></label>
+            <label class="form-label bg-dark-subtle p-1 rounded-start border border-secondary" for="password"><img src="../assets/icons/password.svg" alt="Clave" style="width: 36px;"></label>
             <input
               v-model="password"
               class="form-input p-2 rounded-end"
@@ -75,3 +75,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  div.container-fluid{
+    background-image: url('../assets/fondo-login.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+</style>

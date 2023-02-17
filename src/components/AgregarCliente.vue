@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-header h4">Agregar nuevo cliente</div>
       <div class="card-body bg-dark-subtle">
-        <form v-on:submit.prevent="agregarRegistro" method="post">
+        <form v-on:submit.prevent="agregarCliente" method="post">
           <div class="mb-3" style="text-align: start">
             <label for="nombre" class="form-label">Nombre:</label>
             <input
@@ -134,7 +134,7 @@ export default {
     this.obtenerProvincias();
   },
   methods: {
-    agregarRegistro() {
+    agregarCliente() {
       console.log(this.cliente);
       var datosEnviar = {
         nombre: this.cliente.nombre,

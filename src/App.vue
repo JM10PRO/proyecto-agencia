@@ -2,8 +2,8 @@
   <div id="app">
     <nav>
       <router-link to="/">Home</router-link> |
-      <router-link to="/login">Login</router-link> |
       <router-link to="/about">About</router-link> |
+      <router-link to="/login">Login</router-link> |
       <router-link to="/listar-clientes">Clientes</router-link> |
       <router-link to="/listar-polizas">Pólizas</router-link>
     </nav>
@@ -33,5 +33,4 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 
-@import 'datatables.net-dt';
 </style>
