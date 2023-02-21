@@ -86,14 +86,14 @@ export default {
         passwd: this.usuario.passwd
       };
 
-      fetch("http://localhost/agencia-seguros/usuarios/?insertar=1", {
+      fetch("usuarios/?insertar=1", {
         method: "POST",
         body: JSON.stringify(datosEnviar),
       })
       .then((respuesta) => respuesta.json())
       .then((datosRespuesta) => {
         console.log(datosRespuesta);
-        window.location.href = "../login";
+        this.$router.push({ name: 'login' });
       });
     },
   },

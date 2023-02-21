@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     datosPoliza() {
-      fetch("http://localhost/agencia-seguros/polizas/?consultardatospoliza=" + this.$route.params.id)
+      fetch("polizas/?consultardatospoliza=" + this.$route.params.id)
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
@@ -85,7 +85,7 @@ export default {
         observaciones: this.poliza.observaciones,
       };
 
-      fetch("http://localhost/agencia-seguros/polizas/?actualizar=" + this.$route.params.id, {
+      fetch("polizas/?actualizar=" + this.$route.params.id, {
         method: "POST",
         body: JSON.stringify(datosEnviar),
       })

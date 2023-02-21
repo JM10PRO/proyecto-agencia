@@ -1,10 +1,17 @@
 <template>
     <div class="container-fluid">
+      <nav>
+        <router-link to="/">Home</router-link> |
+        <router-link :to="{name:'agregarcliente'}">About</router-link> |
+        <router-link :to="{name:'login'}">Login</router-link> |
+        <router-link :to="{name:'listarclientes'}">Clientes</router-link> |
+        <router-link :to="{name:'listarpolizas'}">Pólizas</router-link>
+      </nav>
       <div class="card">
         <div class="card-header bg-primary-subtle d-flex justify-content-between align-middle">
             <p class="h3 pt-2">Listado de clientes</p>
-            <div>
-                <a href="/agregar-cliente" class="btn btn-success mt-1">Dar de alta</a>  
+            <div> 
+                <router-link :to="{name:'agregarcliente'}" class="btn btn-success mt-1">Dar de alta</router-link>
             </div>
         </div>
         <div class="card-body bg-body-tertiary text-start">
@@ -72,7 +79,7 @@
       },
       consultarClientes() {
   
-        fetch("http://localhost/agencia-seguros/clientes/")
+        fetch("clientes/")
           .then((respuesta) => respuesta.json())
           .then((datosRespuesta) => {
             console.log(datosRespuesta);
@@ -105,7 +112,7 @@
           reverseButtons: true
         }).then((result) => {
           if (result.isConfirmed) {
-              fetch("http://localhost/agencia-seguros/clientes/?borrar="+id)
+              fetch("clientes/?borrar="+id)
               .then((respuesta) => respuesta.json())
               .then((datosRespuesta) => {
                 console.log(datosRespuesta);

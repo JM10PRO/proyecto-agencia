@@ -114,7 +114,7 @@ export default {
   },
   methods: {
     obtenerInformacionId() {
-      fetch("http://localhost/agencia-seguros/clientes/?consultar=" + this.$route.params.id)
+      fetch("clientes/?consultar=" + this.$route.params.id)
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
@@ -132,14 +132,14 @@ export default {
         tipo: this.cliente.tipo,
       };
 
-      fetch("http://localhost/agencia-seguros/clientes/?actualizar=" + this.$route.params.id, {
+      fetch("clientes/?actualizar=" + this.$route.params.id, {
         method: "POST",
         body: JSON.stringify(datosEnviar),
       })
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
-          window.location.href = "../listarclientes";
+          this.$router.push({ name: 'listarclientes'});
         });
     },
   },

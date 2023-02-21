@@ -1,5 +1,12 @@
 <template>
     <div class="container">
+      <nav>
+        <router-link to="/">Home</router-link> |
+        <router-link :to="{name:'agregarcliente'}">About</router-link> |
+        <router-link :to="{name:'login'}">Login</router-link> |
+        <router-link :to="{name:'listarclientes'}">Clientes</router-link> |
+        <router-link :to="{name:'listarpolizas'}">Pólizas</router-link>
+      </nav>
       <div class="card">
         <div class="card-header d-flex justify-content-between align-middle">
             <h2>Listado de polizas</h2>
@@ -61,12 +68,10 @@
     methods: {
       consultarPolizas() {
   
-        fetch("http://localhost/agencia-seguros/polizas/")
+        fetch("polizas/")
           .then((respuesta) => respuesta.json())
           .then((datosRespuesta) => {
             console.log(datosRespuesta);
-            
-            this.polizas = [];
   
             if (typeof datosRespuesta[0].success === "undefined") {
               this.polizas = datosRespuesta;
@@ -95,7 +100,7 @@
           reverseButtons: true
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch("http://localhost/agencia-seguros/polizas/?borrar="+id)
+            fetch("polizas/?borrar="+id)
               .then((respuesta) => respuesta.json())
               .then((datosRespuesta) => {
                 console.log(datosRespuesta);

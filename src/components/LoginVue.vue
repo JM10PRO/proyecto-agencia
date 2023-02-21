@@ -50,7 +50,7 @@ export default {
       console.log(this.email);
       console.log(this.password);
 
-      fetch("http://localhost/agencia-seguros/usuarios/")
+      fetch("usuarios/")
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
@@ -63,7 +63,7 @@ export default {
 
           this.usuarios.forEach((usuario) => {
             if (this.email == usuario.correo && this.password == usuario.passwd) {
-              window.location.href = "/listarclientes";
+              this.$router.push({ name: 'listarclientes' });
               this.error = false;
             } else {
               this.error = true;

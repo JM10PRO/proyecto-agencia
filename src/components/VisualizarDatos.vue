@@ -75,7 +75,7 @@ export default {
   methods: {
     obtenerInformacionId() {
       fetch(
-        "http://localhost/agencia-seguros/clientes/?consultar=" + this.$route.params.id)
+        "clientes/?consultar=" + this.$route.params.id)
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log("datos " + datosRespuesta[0]);
@@ -85,7 +85,7 @@ export default {
     },
     consultarPolizasCliente() {
   
-    fetch("http://localhost/agencia-seguros/polizas/?consultarpolizascliente=" + this.$route.params.id)
+    fetch("polizas/?consultarpolizascliente=" + this.$route.params.id)
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
         console.log(datosRespuesta);

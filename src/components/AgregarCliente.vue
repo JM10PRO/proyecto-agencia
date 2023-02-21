@@ -147,19 +147,19 @@ export default {
         tipo: this.cliente.tipo,
       };
 
-      fetch("http://localhost/agencia-seguros/clientes/?insertar=1", {
+      fetch("clientes/?insertar=1", {
         method: "POST",
         body: JSON.stringify(datosEnviar),
       })
       .then((respuesta) => respuesta.json())
       .then((datosRespuesta) => {
         console.log(datosRespuesta);
-        window.location.href = "../listar-clientes";
+        this.$router.push({ name: 'listarclientes' });
       });
     },
     obtenerProvincias() {
 
-    fetch("http://localhost/agencia-seguros/clientes/?provincias=1")
+    fetch("clientes/?provincias=1")
     .then((respuesta) => respuesta.json())
       .then((datosRespuesta) => {
         
@@ -176,12 +176,11 @@ export default {
 
     obtenerMunicipios(codProv) {
 
-      fetch("http://localhost/agencia-seguros/clientes/?municipios="+codProv)
+      fetch("clientes/?municipios="+codProv)
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           
           console.log(datosRespuesta);
-          this.municipios = [];
 
             if (typeof datosRespuesta[0].success === "undefined") {
               this.municipios = datosRespuesta;
@@ -192,7 +191,7 @@ export default {
     },
     provinciaSeleccionada(cod){
       this.codProvinciaSelected = cod;
-      fetch("http://localhost/agencia-seguros/clientes/?provinciaId=" + cod)
+      fetch("clientes/?provinciaId=" + cod)
       .then((respuesta) => respuesta.json())
       .then((datosRespuesta) => {
         
@@ -207,7 +206,7 @@ export default {
     },
     municipioSeleccionado(cod){
       this.codProvinciaSelected = cod;
-      fetch("http://localhost/agencia-seguros/clientes/?municipioId=" + cod)
+      fetch("clientes/?municipioId=" + cod)
       .then((respuesta) => respuesta.json())
       .then((datosRespuesta) => {
         
