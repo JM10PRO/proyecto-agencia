@@ -91,20 +91,20 @@ export default {
         cliente_id: this.poliza.cliente_id,
       };
 
-      fetch("http://localhost/agencia-seguros/polizas/?insertar=1", {
+      fetch("polizas/?insertar=1", {
         method: "POST",
         body: JSON.stringify(datosEnviar),
       })
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
-          window.location.href = "../listar-polizas";
+          this.$router.push({ name: 'listarpolizas' });
         });
     },
 
     consultarClientes() {
   
-      fetch("http://localhost/agencia-seguros/clientes/")
+      fetch("clientes/")
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
