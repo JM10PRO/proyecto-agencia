@@ -91,7 +91,7 @@ export default {
         cliente_id: this.poliza.cliente_id,
       };
 
-      fetch("polizas/?insertar=1", {
+      fetch("http://localhost/agencia-seguros/php/polizas/?insertar=1", {
         method: "POST",
         body: JSON.stringify(datosEnviar),
       })
@@ -104,7 +104,7 @@ export default {
 
     consultarClientes() {
   
-      fetch("clientes/")
+      fetch("http://localhost/agencia-seguros/php/clientes/")
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);

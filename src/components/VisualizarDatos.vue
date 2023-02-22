@@ -33,7 +33,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="overflow-y-auto">
-                                        <tr v-for="poliza in polizas" :key="poliza.id" :class="[
+                                        <tr v-for="poliza in polizas" :key="poliza.numero" :class="[
                                             'alert', 
                                             poliza.estado == 'Cobrada' ? 'alert-success' : '', 
                                             poliza.estado == 'A cuenta' ? 'alert-info' : '', 
@@ -46,8 +46,8 @@
                                         <td>{{ poliza.estado }}</td>
                                         <td>{{ poliza.observaciones }}</td>
                                         <td>
-                                            <router-link :to="{name:'editarpoliza',params:{id:poliza.id}}" class="btn btn-primary">Editar</router-link> &nbsp;
-                                            <button type="button" v-on:click="borrarpoliza(poliza.id)" class="btn btn-danger">Borrar</button>
+                                            <router-link :to="{name:'editarpoliza',params:{id:poliza.numero}}" class="btn btn-primary">Editar</router-link> &nbsp;
+                                            <button type="button" v-on:click="borrarpoliza(poliza.numero)" class="btn btn-danger">Borrar</button>
                                         </td>
                                         </tr>
                                     </tbody>
@@ -75,7 +75,7 @@ export default {
   methods: {
     obtenerInformacionId() {
       fetch(
-        "clientes/?consultar=" + this.$route.params.id)
+        "http://localhost/agencia-seguros/php/clientes/?consultar=" + this.$route.params.id)
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log("datos " + datosRespuesta[0]);
@@ -85,7 +85,7 @@ export default {
     },
     consultarPolizasCliente() {
   
-    fetch("polizas/?consultarpolizascliente=" + this.$route.params.id)
+    fetch("http://localhost/agencia-seguros/php/polizas/?consultarpolizascliente=" + this.$route.params.id)
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
         console.log(datosRespuesta);

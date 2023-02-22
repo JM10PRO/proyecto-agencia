@@ -147,7 +147,7 @@ export default {
         tipo: this.cliente.tipo,
       };
 
-      fetch("clientes/?insertar=1", {
+      fetch("http://localhost/agencia-seguros/php/clientes/?insertar=1", {
         method: "POST",
         body: JSON.stringify(datosEnviar),
       })
@@ -159,7 +159,7 @@ export default {
     },
     obtenerProvincias() {
 
-    fetch("clientes/?provincias=1")
+    fetch("http://localhost/agencia-seguros/php/clientes/?provincias=1")
     .then((respuesta) => respuesta.json())
       .then((datosRespuesta) => {
         
@@ -176,7 +176,7 @@ export default {
 
     obtenerMunicipios(codProv) {
 
-      fetch("clientes/?municipios="+codProv)
+      fetch("http://localhost/agencia-seguros/php/clientes/?municipios="+codProv)
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           
@@ -191,7 +191,7 @@ export default {
     },
     provinciaSeleccionada(cod){
       this.codProvinciaSelected = cod;
-      fetch("clientes/?provinciaId=" + cod)
+      fetch("http://localhost/agencia-seguros/php/clientes/?provinciaId=" + cod)
       .then((respuesta) => respuesta.json())
       .then((datosRespuesta) => {
         
@@ -206,7 +206,7 @@ export default {
     },
     municipioSeleccionado(cod){
       this.codProvinciaSelected = cod;
-      fetch("clientes/?municipioId=" + cod)
+      fetch("http://localhost/agencia-seguros/php/clientes/?municipioId=" + cod)
       .then((respuesta) => respuesta.json())
       .then((datosRespuesta) => {
         
