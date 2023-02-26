@@ -11,24 +11,25 @@
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table">
+            <table id="tablapolizas" class="table">
               <thead>
                 <tr>
-                  <th scope="col">Número de póliza</th>
-                  <th scope="col">Importe</th>
-                  <th scope="col">Fecha</th>
-                  <th scope="col">Estado</th>
-                  <th scope="col">Observaciones</th>
+                  <th scope="col ms-3">Número de póliza</th>
+                  <th scope="col ms-3">Importe</th>
+                  <th scope="col ms-3">Fecha</th>
+                  <th scope="col ms-3">Estado</th>
+                  <th scope="col ms-3">Observaciones</th>
+                  <th scope="col ms-3">Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="(poliza, index) in polizas" :key="poliza.numero" :class="[
                     'alert', 
                     poliza.estado == 'Cobrada' ? 'alert-success' : '', 
-                    poliza.estado == 'A cuenta' ? 'alert-info' : '', 
+                    poliza.estado == 'A cuenta' ? 'alert-light' : '', 
                     poliza.estado == 'Liquidada' ? 'alert-warning' : '',
-                    poliza.estado == 'Anulada' ? 'alert-dark' : '',
-                    poliza.estado == 'Pre-anulada' ? 'alert-secondary' : '']">
+                    poliza.estado == 'Anulada' ? 'alert-primary' : '',
+                    poliza.estado == 'Pre-anulada' ? 'alert-dark' : '']">
                   <td>{{ poliza.numero }}</td>
                   <td>{{ poliza.importe }}</td>
                   <td>{{ poliza.fecha }}</td>
@@ -51,10 +52,17 @@
   </template>
   <script>
 
+  import "jquery/dist/jquery.min.js";
+  import "datatables.net-dt/js/dataTables.dataTables";
+  import "datatables.net-dt/css/jquery.dataTables.min.css";
+  import $ from "jquery";
   import Swal from 'sweetalert2';
   import NavBar from './NavBar.vue';
 
   export default {
+    mounted(){
+      this.consultarPolizas();
+    },
     components:{
       NavBar,
     },
@@ -63,10 +71,12 @@
         polizas: [],
       };
     },
-    created: function () {
-      this.consultarPolizas();
-    },
     methods: {
+      tabla(){
+        this.$nextTick(() => {
+          $("#tablapolizas").DataTable();
+        });      
+      },
       consultarPolizas() {
   
         fetch("http://localhost/agencia-seguros/php/polizas/")
@@ -76,6 +86,7 @@
   
             if (typeof datosRespuesta[0].success === "undefined") {
               this.polizas = datosRespuesta;
+              this.tabla();
             }
   
           })
@@ -128,3 +139,10 @@
     },
   };
   </script>
+  <style scoped>
+  table.dataTable thead th{
+    text-align: center;
+    padding: 10px 15px 10px;
+  }
+
+  </style>

@@ -34,7 +34,7 @@
                                           <th scope="col">Acciones</th>
                                           </tr>
                                       </thead>
-                                      <tbody class="overflow-y-auto">
+                                      <tbody>
                                           <tr v-for="(poliza, index) in polizas" :key="poliza.numero" :class="[
                                               'alert', 
                                               poliza.estado == 'Cobrada' ? 'alert-success' : '', 

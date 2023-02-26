@@ -86,7 +86,6 @@
             if (typeof datosRespuesta[0].success === "undefined") {
               this.clientes = datosRespuesta;
               this.tabla();
-              console.log("tabla creada");
             }
           })
           .catch(console.log);

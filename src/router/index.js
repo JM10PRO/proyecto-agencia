@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 
 import LoginVue from '../components/LoginVue.vue'
 import RegistrarUsuario from '../components/RegistrarUsuario.vue'
-// import HomeView from '../views/HomeView.vue'
 
 import ListarClientes from '../components/ListarClientes.vue'
 import AgregarCliente from '../components/AgregarCliente.vue'
