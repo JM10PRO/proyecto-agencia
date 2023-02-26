@@ -1,17 +1,12 @@
 <template>
-    <div class="container">
-      <nav>
-        <router-link to="/">Home</router-link> |
-        <router-link :to="{name:'agregarcliente'}">About</router-link> |
-        <router-link :to="{name:'login'}">Login</router-link> |
-        <router-link :to="{name:'listarclientes'}">Clientes</router-link> |
-        <router-link :to="{name:'listarpolizas'}">Pólizas</router-link>
-      </nav>
+  <div class="container-fluid m-0 p-0">
+    <NavBar></NavBar>
+    <div class="container-fluid pb-3">
       <div class="card">
-        <div class="card-header d-flex justify-content-between align-middle">
-            <h2>Listado de polizas</h2>
+        <div class="card-header bg-primary-subtle d-flex justify-content-between align-middle">
+            <p class="h3 pt-2">Listado de pólizas</p>
             <div>
-              <router-link :to="{name:'agregarpoliza'}" class="btn btn-success">Añadir póliza</router-link> 
+              <router-link :to="{name:'agregarpoliza'}" class="btn btn-success mt-1">Añadir póliza</router-link> 
             </div>
         </div>
         <div class="card-body">
@@ -34,13 +29,14 @@
                     poliza.estado == 'Liquidada' ? 'alert-warning' : '',
                     poliza.estado == 'Anulada' ? 'alert-dark' : '',
                     poliza.estado == 'Pre-anulada' ? 'alert-secondary' : '']">
-                  <td @click="verDatosCliente(poliza.cliente_id)">{{ poliza.numero }}</td>
+                  <td>{{ poliza.numero }}</td>
                   <td>{{ poliza.importe }}</td>
                   <td>{{ poliza.fecha }}</td>
                   <td>{{ poliza.estado }}</td>
                   <td>{{ poliza.observaciones }}</td>
                   <td>
-                      <router-link :to="{name:'editarpoliza',params:{id:poliza.numero}}" class="btn btn-primary">Editar</router-link> &nbsp;
+                      <button class="btn btn-info me-3" @click="verDatosCliente(poliza.cliente_id)">Ver cliente</button>
+                      <router-link :to="{name:'editarpoliza',params:{numero:poliza.numero,id:poliza.cliente_id}}" class="btn btn-primary">Editar</router-link> &nbsp;
                       <button type="button" v-on:click="borrarPoliza(index, poliza.numero)" class="btn btn-danger">Borrar</button>
                   </td>
                 </tr>
@@ -48,15 +44,20 @@
             </table>
           </div>
         </div>
-        <div class="card-footer text-muted">Fin de la sección</div>
       </div>
     </div>
+  </div>
+    
   </template>
   <script>
 
   import Swal from 'sweetalert2';
+  import NavBar from './NavBar.vue';
 
   export default {
+    components:{
+      NavBar,
+    },
     data() {
       return {
         polizas: [],
@@ -81,7 +82,7 @@
           .catch(console.log);
   
       },
-      borrarPoliza(index, id){
+      borrarPoliza(index, numero_poliza){
         const swalWithBootstrapButtons = Swal.mixin({
           customClass: {
             confirmButton: 'btn btn-success mx-2',
@@ -100,7 +101,7 @@
           reverseButtons: true
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch("http://localhost/agencia-seguros/php/polizas/?borrar="+id)
+            fetch("http://localhost/agencia-seguros/php/polizas/?borrar="+numero_poliza)
               .then((respuesta) => respuesta.json())
               .then((datosRespuesta) => {
                 console.log(datosRespuesta);

@@ -1,12 +1,5 @@
 <template>
   <div id="app">
-    <!-- <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/listar-clientes">Clientes</router-link> |
-      <router-link to="/listar-polizas">Pólizas</router-link>
-    </nav> -->
     <router-view/>
   </div>
 </template>
@@ -18,8 +11,11 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-image: url('assets/img/fondo.jpg');
+  background-size: cover;
+  background-position: center;
 }
-
+/* 
 nav {
   padding: 30px;
 }
@@ -31,6 +27,6 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
-}
+} */
 
 </style>
