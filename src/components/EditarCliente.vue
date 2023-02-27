@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     obtenerInformacionId() {
-      fetch("http://localhost/agencia-seguros/php/clientes/?consultar=" + this.$route.params.id)
+      fetch("php/clientes/?consultar=" + this.$route.params.id)
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
@@ -141,7 +141,7 @@ export default {
         tipo: this.cliente.tipo,
       };
 
-      fetch("http://localhost/agencia-seguros/php/clientes/?actualizar=" + this.$route.params.id, {
+      fetch("php/clientes/?actualizar=" + this.$route.params.id, {
         method: "POST",
         body: JSON.stringify(datosEnviar),
       })

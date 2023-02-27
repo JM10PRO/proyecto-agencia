@@ -85,7 +85,7 @@ export default {
   methods: {
     obtenerInformacionId() {
       fetch(
-        "http://localhost/agencia-seguros/php/clientes/?consultar=" + this.$route.params.id)
+        "php/clientes/?consultar=" + this.$route.params.id)
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log("datos " + datosRespuesta[0]);
@@ -95,7 +95,7 @@ export default {
     },
     consultarPolizasCliente() {
   
-    fetch("http://localhost/agencia-seguros/php/polizas/?consultarpolizascliente=" + this.$route.params.id)
+    fetch("php/polizas/?consultarpolizascliente=" + this.$route.params.id)
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
         console.log(datosRespuesta);
@@ -126,7 +126,7 @@ export default {
           reverseButtons: true
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch("http://localhost/agencia-seguros/php/polizas/?borrar="+numero_poliza)
+            fetch("php/polizas/?borrar="+numero_poliza)
               .then((respuesta) => respuesta.json())
               .then((datosRespuesta) => {
                 console.log(datosRespuesta);

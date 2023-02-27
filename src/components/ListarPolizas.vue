@@ -79,7 +79,7 @@
       },
       consultarPolizas() {
   
-        fetch("http://localhost/agencia-seguros/php/polizas/")
+        fetch("php/polizas/")
           .then((respuesta) => respuesta.json())
           .then((datosRespuesta) => {
             console.log(datosRespuesta);
@@ -112,7 +112,7 @@
           reverseButtons: true
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch("http://localhost/agencia-seguros/php/polizas/?borrar="+numero_poliza)
+            fetch("php/polizas/?borrar="+numero_poliza)
               .then((respuesta) => respuesta.json())
               .then((datosRespuesta) => {
                 console.log(datosRespuesta);

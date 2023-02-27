@@ -58,7 +58,7 @@ export default {
       console.log(this.email);
       console.log(this.password);
 
-      fetch("http://localhost/agencia-seguros/php/usuarios/")
+      fetch("php/usuarios/")
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);

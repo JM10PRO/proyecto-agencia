@@ -93,7 +93,7 @@ export default {
         passwd: this.usuario.passwd
       };
 
-      fetch("http://localhost/agencia-seguros/php/usuarios/?insertar=1", {
+      fetch("php/usuarios/?insertar=1", {
         method: "POST",
         body: JSON.stringify(datosEnviar),
       })
