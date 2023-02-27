@@ -13,6 +13,8 @@ import ListarPolizas from '../components/ListarPolizas.vue'
 import AgregarPoliza from '../components/AgregarPoliza.vue'
 import EditarPoliza from '../components/EditarPoliza.vue'
 
+import BuscadorVue from '../components/BuscadorVue.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -71,6 +73,12 @@ const routes = [
     path: '/editar-poliza',
     name: 'editarpoliza',
     component: EditarPoliza,
+    meta: { requireAuth: true }
+  },
+  {
+    path: '/buscador',
+    name: 'buscador',
+    component: BuscadorVue,
     meta: { requireAuth: true }
   },
 ]
