@@ -54,9 +54,13 @@ if(isset($_GET["actualizar"])){
 
     $id=(isset($data->id))?$data->id:$_GET["actualizar"];
     $nombre=$data->nombre;
+    $apellidos=$data->apellidos;
     $correo=$data->correo;
+    $telefono=$data->telefono;
+    $cp=$data->cp;
+    $tipo=$data->tipo;
     
-    $sqlClientes = mysqli_query($conexionBD,"UPDATE clientes SET nombre='$nombre',correo='$correo' WHERE id='$id'");
+    $sqlClientes = mysqli_query($conexionBD,"UPDATE clientes SET nombre='$nombre',apellidos='$apellidos',correo='$correo',telefono='$telefono',cp='$cp',tipo='$tipo' WHERE id='$id'");
     echo json_encode(["success"=>1]);
     exit();
 }

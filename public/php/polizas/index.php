@@ -118,5 +118,5 @@ if (mysqli_num_rows($sqlPolizas) > 0) {
     $polizas = mysqli_fetch_all($sqlPolizas, MYSQLI_ASSOC);
     echo json_encode($polizas);
 } else {
-    echo json_encode([["polizas" => 0]]);
+    echo json_encode([["success" => 0]]);
 }
