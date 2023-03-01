@@ -127,7 +127,7 @@ export default {
             if(this.cod1 == null || this.cod2 == null || this.fecha1 == null || this.fecha2 == null){
                 this.mensaje = true;
             }else {
-                fetch("http://localhost/agencia-seguros/php/polizas/?buscar=1", {
+                fetch("php/polizas/?buscar=1", {
                 method: "POST",
                 body: JSON.stringify(datosEnviar),
                 })
