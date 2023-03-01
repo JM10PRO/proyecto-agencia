@@ -10,6 +10,41 @@ $servidor = "localhost"; $usuario = "josemariagil"; $contrasenia = "I9@02hrq"; $
 $conexionBD = new mysqli($servidor, $usuario, $contrasenia, $nombreBaseDatos);
 
 // Consulta datos y recepciona una clave para consultar dichos datos con dicha clave
+
+if (isset($_GET["buscar"])) {
+    $data = json_decode(file_get_contents("php://input"));
+    $codigo_cliente_1 = $data->cod1;
+    $codigo_cliente_2 = $data->cod2;
+    $fecha_inicio = $data->fecha1;
+    $fecha_fin = $data->fecha2;
+    $estado = $data->estado;
+
+    if($codigo_cliente_1 == null || $codigo_cliente_2 == null || $fecha_inicio == null || $fecha_fin == null){
+        echo json_encode(["Hay campos nulos"]);
+        exit();
+    }
+
+    $filtrar_estado = "";
+    $estado != null ? $filtrar_estado = "AND estado = '$estado'" : $filtrar_estado = "";   
+
+    $sqlListado = mysqli_query($conexionBD, "SELECT * FROM polizas WHERE cliente_id BETWEEN $codigo_cliente_1 AND $codigo_cliente_2
+    AND fecha BETWEEN '$fecha_inicio' AND '$fecha_fin'". $filtrar_estado ."");
+
+    if($sqlListado == false){
+        echo json_encode($filtrar_estado);
+        // echo json_encode(["Error"]);
+        exit();   
+    }
+
+    if (mysqli_num_rows($sqlListado) > 0) {
+        $resultado = mysqli_fetch_all($sqlListado, MYSQLI_ASSOC);
+        echo json_encode($resultado);
+        exit();
+    } else {
+        echo json_encode(["success" => 0]);
+    }
+}
+
 if (isset($_GET["consultarpolizascliente"])) {
     $sqlPolizas = mysqli_query($conexionBD, "SELECT * FROM polizas WHERE cliente_id=" . $_GET["consultarpolizascliente"]);
     if (mysqli_num_rows($sqlPolizas) > 0) {
