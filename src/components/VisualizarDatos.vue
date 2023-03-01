@@ -38,10 +38,10 @@
                                           <tr v-for="(poliza, index) in polizas" :key="poliza.numero" :class="[
                                               'alert', 
                                               poliza.estado == 'Cobrada' ? 'alert-success' : '', 
-                                              poliza.estado == 'A cuenta' ? 'alert-info' : '', 
+                                              poliza.estado == 'A cuenta' ? 'alert-light' : '', 
                                               poliza.estado == 'Liquidada' ? 'alert-warning' : '',
-                                              poliza.estado == 'Anulada' ? 'alert-dark' : '',
-                                              poliza.estado == 'Pre-anulada' ? 'alert-secondary' : '']">
+                                              poliza.estado == 'Anulada' ? 'alert-primary' : '',
+                                              poliza.estado == 'Pre-anulada' ? 'alert-dark' : '']">
                                           <td>{{ poliza.numero }}</td>
                                           <td>{{ poliza.importe }}</td>
                                           <td>{{ poliza.fecha }}</td>

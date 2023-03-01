@@ -35,9 +35,9 @@
                 No se reconoce el email o la contraseña.
               </span>
               <br>
-              <small class="text-white">¿Aún no tienes una cuenta? <a href="/registrarse" class="text-warning">Registrarse</a> </small>
+              <small class="text-white">¿Aún no tienes una cuenta? <router-link :to="{name:'registrarse'}" class="text-warning">Registrarse</router-link> </small>
               <br><br>
-              <input class="form-submit btn btn-primary shadow" type="submit" value="Sign in" />
+              <input class="form-submit btn btn-primary shadow" type="submit" value="Iniciar sesión" />
             </form>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default {
       console.log(this.email);
       console.log(this.password);
 
-      fetch("http://localhost/agencia-seguros/php/usuarios/")
+      fetch("php/usuarios/")
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
