@@ -137,7 +137,12 @@ export default {
                 })
                 .then((respuesta) => respuesta.json())
                 .then((datosRespuesta) => {
-                    if(datosRespuesta == "noresultado"){
+                    if(datosRespuesta == "Hay campos nulos"){
+                        this.listado = 0;
+                        this.noresultado = false;
+                        this.resultado = false;
+                        this.mensaje = true;
+                    }else if(datosRespuesta == "noresultado"){
                         this.listado = 0;
                         this.noresultado = true;
                         this.resultado = false;
