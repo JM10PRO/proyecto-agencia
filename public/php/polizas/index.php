@@ -41,7 +41,8 @@ if (isset($_GET["buscar"])) {
         echo json_encode($resultado);
         exit();
     } else {
-        echo json_encode(["success" => 0]);
+        echo json_encode(["noresultado"]);
+        exit();
     }
 }
 

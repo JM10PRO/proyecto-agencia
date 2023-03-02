@@ -63,7 +63,8 @@
               />
             </div>
             
-            <small class="text-black fw-semibold">¿Ya tienes una cuenta? <a href="/login" class="text-info-emphasis">Iniciar sesión</a> </small> 
+            <small class="text-black fw-semibold">¿Ya tienes una cuenta?
+              <router-link :to="{name:'login'}" class="text-info-emphasis">Iniciar sesión</router-link> </small> 
             <br>
             
             <div class="btn-group mt-3" role="group" aria-label="Button group name">

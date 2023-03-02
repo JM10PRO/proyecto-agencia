@@ -52,6 +52,9 @@
                     </div>
                 </div>
             </div>
+            <div v-if="noresultado" class="mb-3">
+                <span class="h6 p-1 bg-danger text-white fw-semibold rounded">No hay datos que coincidan con la búsqueda.</span>
+            </div>
             <div v-if="resultado" class="card">
                 <div class="card-header bg-success-subtle">
                     <p class="h5 fw-semibold mt-1">Resultados de la búsqueda</p>
@@ -110,6 +113,7 @@ export default {
             fecha2: null,
             estado: null,
             resultado: false,
+            noresultado: false,
             mensaje: false,
             listado: {}
         }
@@ -133,10 +137,18 @@ export default {
                 })
                 .then((respuesta) => respuesta.json())
                 .then((datosRespuesta) => {
+                    if(datosRespuesta == "noresultado"){
+                        this.listado = 0;
+                        this.noresultado = true;
+                        this.resultado = false;
+                        this.mensaje = false;
+                    }else{
+                        this.listado = datosRespuesta;
+                        this.mensaje = false;
+                        this.resultado = true;
+                        this.noresultado = false;
+                    }
                     console.log(datosRespuesta);
-                    this.listado = datosRespuesta;
-                    this.mensaje = false;
-                    this.resultado = true;
                 })
                 .catch(console.log);
             }
