@@ -49,7 +49,7 @@
                                           <td>{{ poliza.observaciones }}</td>
                                           <td>
                                               <router-link :to="{name:'editarpoliza',params:{numero:poliza.numero,id:cliente.id}}" class="btn btn-primary">Editar</router-link> &nbsp;
-                                              <button type="button" v-on:click="borrarpoliza(index, poliza.numero)" class="btn btn-danger">Borrar</button>
+                                              <button type="button" v-on:click="borrarPoliza(index, poliza.numero)" class="btn btn-danger">Borrar</button>
                                           </td>
                                           </tr>
                                       </tbody>

@@ -72,13 +72,13 @@
             </div>
             <div class="mb-3" style="text-align: start">
               <label for="" class="form-label">Provincia:</label>
-              <select v-model="cliente.provincia" @change="provIsSelected=true, obtenerMunicipios(cliente.provincia), provinciaSeleccionada(cliente.provincia)" class="form-select form-select-lg" name="provincia" id="provincia">
+              <select v-model="cliente.provincia" @change="provIsSelected=true, obtenerMunicipios(cliente.provincia), provinciaSeleccionada(cliente.provincia)" class="form-select form-select-lg" name="provincia" id="provincia" required>
                 <option v-for="provincia in provincias" :key="provincia.nombre" :value="provincia.cod">{{ provincia.nombre }}</option>
               </select>
             </div>
             <div v-if="provIsSelected" class="mb-3" style="text-align: start">
               <label for="" class="form-label">Municipio:</label>
-              <select v-model="cliente.municipio" @change="municipioSeleccionado(cliente.municipio)" class="form-select form-select-lg" name="municipio" id="municipio">
+              <select v-model="cliente.municipio" @change="municipioSeleccionado(cliente.municipio)" class="form-select form-select-lg" name="municipio" id="municipio" required>
                 <option v-for="municipio in municipios" :key="municipio.municipio" :value="municipio.id">{{ municipio.municipio }}</option>
               </select>
             </div>

@@ -24,7 +24,7 @@
             </div>
             <div class="mb-3" style="text-align: start">
               <label for="estado" class="form-label">Estado:</label>
-              <select v-model="poliza.estado" name="estado" id="estado" class="form-select">
+              <select v-model="poliza.estado" name="estado" id="estado" class="form-select" required>
                 <option value="Cobrada">Cobrada</option>
                 <option value="A cuenta">A cuenta</option>
                 <option value="Liquidada">Liquidada</option>
@@ -54,7 +54,7 @@
             </div>
             <div class="mb-3" style="text-align: start">
               <label for="clientes" class="form-label">Tomador de la póliza:</label>
-              <select v-model="poliza.cliente_id" class="form-select form-select-lg" name="cliente" id="cliente">
+              <select v-model="poliza.cliente_id" class="form-select form-select-lg" name="cliente" id="cliente" required>
                 <option v-for="cliente in clientes" :key="cliente.id" :value="cliente.id">Nombre: {{ cliente.nombre }} {{ cliente.apellidos }} - Correo: {{ cliente.correo }}</option>
               </select>
               <small id="helpId" class="text-muted"

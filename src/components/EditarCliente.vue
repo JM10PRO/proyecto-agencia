@@ -84,7 +84,7 @@
                 </div>
             <div class="mb-3" style="text-align: start">
               <label for="tipo" class="form-label">Tipo:</label>
-              <select v-model="cliente.tipo" name="tipo" id="tipo" class="form-select form-select-lg">
+              <select v-model="cliente.tipo" name="tipo" id="tipo" class="form-select form-select-lg" required>
                 <option value="empresa">Empresa</option>
                 <option value="particular">Particular</option>
               </select>

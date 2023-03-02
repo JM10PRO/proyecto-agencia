@@ -11,11 +11,11 @@
                         <div class="col col-7">
                             <div class="row p-2">
                                 <div class="col">
-                                    <label for="cod1" class="form-label me-2 fw-semibold">Código 1:</label>
+                                    <label for="cod1" class="form-label me-2 fw-semibold">Desde cliente:</label>
                                     <input v-model="cod1" type="number" name="cod1" id="cod1" class="form-control-md">
                                 </div>
                                 <div class="col">
-                                    <label for="cod2" class="form-label me-2 fw-semibold">Código 2:</label>
+                                    <label for="cod2" class="form-label me-2 fw-semibold">Hasta cliente:</label>
                                     <input v-model="cod2" type="number" name="cod2" id="cod2" class="form-control-md">
                                 </div>    
                             </div>

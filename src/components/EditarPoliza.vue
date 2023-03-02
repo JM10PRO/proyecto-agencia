@@ -21,7 +21,7 @@
             </div>
             <div class="mb-3" style="text-align: start">
               <label for="estado" class="form-label">Estado:</label>
-              <select v-model="poliza.estado" name="estado" id="estado" class="form-control">
+              <select v-model="poliza.estado" name="estado" id="estado" class="form-control" required>
                 <option value="Cobrada">Cobrada</option>
                 <option value="A cuenta">A cuenta</option>
                 <option value="Liquidada">Liquidada</option>
